@@ -35,4 +35,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add JONEPS-Tenders.xlsx
           git diff --staged --quiet || git commit -m "Update tenders $(date +'%Y-%m-%d')"
+          git pull --rebase
           git push
