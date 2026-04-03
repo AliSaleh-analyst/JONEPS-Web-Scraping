@@ -2,6 +2,9 @@
 
 Automated daily scraper that monitors the **Jordan Government Procurement Portal (JONEPS)** for pharmaceutical tenders and keeps them organized in an Excel file updated every day without any manual effort.
 
+
+<img width="1440" height="508" alt="image" src="https://github.com/user-attachments/assets/c2645fcd-7bd4-4e19-bf4b-b22be0118b9f" />
+
 ---
 
 ## What It Does
