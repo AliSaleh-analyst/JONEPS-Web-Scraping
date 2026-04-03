@@ -1,0 +1,36 @@
+name: JONEPS Daily Scrape
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Runs every day at 6:00 AM UTC
+  workflow_dispatch:       # Allows manual run from GitHub Actions tab
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Run scraper
+        run: python scrape.py
+
+      - name: Commit and push updated Excel
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add JONEPS-Tenders.xlsx
+          git diff --staged --quiet || git commit -m "Update tenders $(date +'%Y-%m-%d')"
+          git push
